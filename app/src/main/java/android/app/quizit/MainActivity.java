@@ -1,5 +1,6 @@
 package android.app.quizit;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -61,15 +62,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button clicked = (Button) v;
         if (clicked.getId() == R.id.enter_button) {
-            if (selection.equals(QuizEntry.correctAnswers[currentQuestion])) {
-                score++;
-                scoreTextView.setText("Score: " + score);
-            }
+            updateScore();
             currentQuestion++;
             loadQuestion();
         } else {
             selection = clicked.getText().toString();
             clicked.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
+        }
+    }
+
+    void updateScore() {
+        if (selection.equals(QuizEntry.correctAnswers[currentQuestion])) {
+            score++;
+            scoreTextView.setText("Score: " + score);
         }
     }
 
@@ -81,10 +86,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     void loadQuestion() {
+        if (currentQuestion >= totalQuestions) {
+            finishQuiz();
+            return;
+        }
         questionTextView.setText(QuizEntry.questions[currentQuestion]);
         ansA.setText(QuizEntry.options[currentQuestion][0]);
         ansB.setText(QuizEntry.options[currentQuestion][1]);
         ansC.setText(QuizEntry.options[currentQuestion][2]);
         ansD.setText(QuizEntry.options[currentQuestion][3]);
+    }
+
+    void finishQuiz() {
+        String message = "";
+        if (score > totalQuestions*0.60) {
+            message = "You passed!";
+        } else {
+            message = "You failed...";
+        }
+
+        new AlertDialog.Builder(this).setTitle(message)
+                .setMessage("Your score is " + score + " out of " + totalQuestions)
+                .setPositiveButton("Play Again", (dialogInterface, i) -> resetQuiz())
+                .show();
+    }
+
+    void resetQuiz() {
+        score = 0;
+        currentQuestion = 0;
+        loadQuestion();
+        scoreTextView.setText("Score: " + score);
     }
 }
