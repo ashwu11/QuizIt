@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    android:padding="24dp"
+    android:padding="30dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -91,5 +91,16 @@
         android:text="Enter"
         android:textColor="@color/black">
     </Button>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/score"
+        android:text="Score"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_below="@+id/enter_button"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"/>
 
 </RelativeLayout>
