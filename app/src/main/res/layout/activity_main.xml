@@ -43,6 +43,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/ans_A"
             android:layout_margin="5dp"
             android:backgroundTint="@color/white"
             android:text="Answer A"
@@ -52,6 +53,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/ans_B"
             android:layout_margin="5dp"
             android:backgroundTint="@color/white"
             android:text="Answer B"
@@ -61,6 +63,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/ans_C"
             android:layout_margin="5dp"
             android:backgroundTint="@color/white"
             android:text="Answer C"
@@ -70,6 +73,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/ans_D"
             android:layout_margin="5dp"
             android:backgroundTint="@color/white"
             android:text="Answer D"
